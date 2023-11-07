@@ -19,11 +19,19 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import flask
-
+import pywikibot
+from pywikibot import pagegenerators
 
 app = flask.Flask(__name__)
-
+site = pywikibot.Site('zh', 'wikipedia')
+cat = pywikibot.Category(site, "Category:正在等待審核的草稿")
+gen = pagegenerators.CategorizedPageGenerator(cat)
+str = ""
 
 @app.route('/')
 def index():
-  return 'Hello Z!'
+  for page in gen:
+    if("<ref" not in page.text):
+        str = str + page.title() + "\n"
+  str = str + "\n以上是【Category:正在等待審核的草稿】中可能需要检查的草稿"
+  return str
