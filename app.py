@@ -8,6 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 app = Flask(__name__) 
 
+sumPatroll = 0
 finalStr = ""
 overflag = False # 完成标志
 executor = ThreadPoolExecutor(3) # 线程池
@@ -35,11 +36,11 @@ def patrollInfo():
     pagetext = ""
     catext = ""
     userlist = defaultdict(int)
-    sum = 0
+    global sumPatroll
     for pageCat, info in gen:
         if not re.search(r'\[\[(Category|分類|分类|category):|{{(Uncategorized|Copyvio|消歧義|Notability|bd)', pageCat.text):
             catext = catext + "[[" + pageCat.title() + "]]、"
-        sum += 1
+        sumPatroll += 1
         userlist[info['user']] += 1
     userlistcnt = defaultdict(list)
     for user, cnt in userlist.items():
@@ -51,7 +52,7 @@ def patrollInfo():
         pagetext += '、'.join(users) + "\n\n"
     page = pywikibot.Page(site, "User:Air7538/沙盒02")
     localtime = time.asctime(time.localtime(time.time()))
-    page.text = "此时共有" + str(sum) + "条条目未巡查，以下是统计情况：\n\n" + pagetext + "存在潜在问题：\n\n" + catext + "\n\n统计于：" + localtime
+    page.text = "此时共有" + str(sumPatroll) + "条条目未巡查，以下是统计情况：\n\n" + pagetext + "存在潜在问题：\n\n" + catext + "\n\n统计于：" + localtime
     print(page.text)
     global finalStr
     finalStr = page.text
@@ -60,7 +61,8 @@ def patrollInfo():
 
 @app.route('/update', methods=['POST'])
 def update():
+    global sumPatroll
     if(overflag == False):
-        return "此时共有" + str(sum) + "条条目未巡查";
+        return "此时共有" + str(sumPatroll) + "条条目未巡查";
     if(overflag == True):
         return finalStr;
