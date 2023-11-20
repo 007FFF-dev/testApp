@@ -1,5 +1,4 @@
 flask
-time
 collections
 pywikibot
 concurrent.futures
