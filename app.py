@@ -15,18 +15,6 @@ executor = ThreadPoolExecutor(3) # 线程池
 
 @app.route('/')
 def index():
-    site = pywikibot.Site('zh', 'wikipedia')
-    cat = pywikibot.Category(site, "Category:正在等待審核的草稿")
-    gen = pagegenerators.CategorizedPageGenerator(cat)
-    str = ""
-    for page in gen:
-        if("<ref" not in page.text):
-            str = str + page.title() + "\n"
-    str = str + "\n以上是【Category:正在等待審核的草稿】中可能需要检查的草稿"
-    return str
-
-@app.route('/test')
-def test():
     Pokemons = []
     site = pywikibot.Site('zh', 'wikipedia')
     cat = pywikibot.Category(site, "Category:正在等待審核的草稿")
