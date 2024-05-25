@@ -27,21 +27,14 @@ def index():
 
 @app.route('/test')
 def test():
-    Pokemons =["Pikachu", "Charizard", "Squirtle", "Jigglypuff",  
-           "Bulbasaur", "Gengar", "Charmander", "Mew", "Lugia", "Gyarados"]
+    Pokemons = []
     site = pywikibot.Site('zh', 'wikipedia')
     cat = pywikibot.Category(site, "Category:正在等待審核的草稿")
     gen = pagegenerators.CategorizedPageGenerator(cat)
-    str = ""
     for page in gen:
         if("<ref" not in page.text):
-            str = str + page.title() + "\n"
-    str = str + "\n以上是【Category:正在等待審核的草稿】中可能需要检查的草稿"
-    
-    name = 'John Doe'
-    age = 25
-    message = 'Welcome to my website!'
-    return render_template('CatWikiCheck.html', name=name, age=age, message=message)
+            Pokemons.append(page.title())
+    return render_template("CatWikiCheck.html", len = len(Pokemons), Pokemons = Pokemons)
     
 @app.route('/patrollInfo')
 def patroll():
