@@ -25,6 +25,13 @@ def index():
     str = str + "\n以上是【Category:正在等待審核的草稿】中可能需要检查的草稿"
     return str
 
+@app.route('/test')
+def test():
+    name = 'John Doe'
+    age = 25
+    message = 'Welcome to my website!'
+    return render_template('index.html', name=name, age=age, message=message)
+    
 @app.route('/patrollInfo')
 def patroll():
     executor.submit(patrollInfo)
