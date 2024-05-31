@@ -4,9 +4,14 @@
 </head>
 <body>
 <!-- MAIN CONTENT -->
-<h3 id="movie-site">以下是【Category:正在等待審核的草稿】中可能需要检查的草稿</h3>
+<h2>【Category:正在等待審核的草稿】中需要检查的草稿</h2>
+    <h3>无来源标签：</h3>
 {%for i in range(0, len)%} 
     <p><a href="https://zh.wikipedia.org/wiki/{{Pokemons[i]}}">{{Pokemons[i]}}</a></p>
+{%endfor%}
+    <h3>有一个来源标签：</h3>
+{%for i in range(0, len2)%} 
+    <p><a href="https://zh.wikipedia.org/wiki/{{Pokemons2[i]}}">{{Pokemons2[i]}}</a></p>
 {%endfor%}
     <p>当前共有{{i}}条草稿需要审核</p>
 </body>
