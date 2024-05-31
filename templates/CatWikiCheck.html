@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>正在等待審核的草稿待检查名单</title>
+<style> 
+.newspaper
+{
+	column-count:3;
+}
+</style>
 </head>
 <body>
 <!-- MAIN CONTENT -->
-<h2>【Category:正在等待審核的草稿】中需要检查的草稿</h2>
-    <h3>无来源标签：</h3>
-{%for i in range(0, len)%} 
-    <p><a href="https://zh.wikipedia.org/wiki/{{Pokemons[i]}}">{{Pokemons[i]}}</a></p>
-{%endfor%}
-    <h3>有一个来源标签：</h3>
-{%for i in range(0, len2)%} 
-    <p><a href="https://zh.wikipedia.org/wiki/{{Pokemons2[i]}}">{{Pokemons2[i]}}</a></p>
-{%endfor%}
+<h2>Category:正在等待審核的草稿中需要检查的草稿</h2>
+    <hr>
     <p>当前共有{{i}}条草稿需要审核</p>
-{%for i in range(0, len3)%} 
-    <p><a href="https://zh.wikipedia.org/wiki/{{Pokemons3[i]}}">{{Pokemons3[i]}}</a></p>
-{%endfor%}
+<div class="newspaper">
+    <h3>No ref：</h3>
+        <ul>
+            {%for i in range(0, len)%}
+            <li><a href="https://zh.wikipedia.org/wiki/{{Pokemons[i]}}">{{Pokemons[i]}}</a></li>
+            {%endfor%}
+        </ul>
+    <h3>One ref：</h3>
+        <ul>
+            {%for i in range(0, len2)%} 
+            <li><a href="https://zh.wikipedia.org/wiki/{{Pokemons2[i]}}">{{Pokemons2[i]}}</a></li>
+            {%endfor%}
+        </ul>
+    <h3>Other：</h3>
+        <ul>
+            {%for i in range(0, len3)%} 
+            <li><a href="https://zh.wikipedia.org/wiki/{{Pokemons3[i]}}">{{Pokemons3[i]}}</a></li>
+            {%endfor%}
+        </ul>
+</div>
 </body>
 </html>
