@@ -24,7 +24,7 @@ def index():
         i += 1
         if("<ref" not in page.text):
             Pokemons.append(page.title())
-    return render_template("CatWikiCheck.html", len = len(Pokemons), Pokemons = Pokemons)
+    return render_template("CatWikiCheck.html", len = len(Pokemons), Pokemons = Pokemons, i = i)
     
 @app.route('/patrollInfo')
 def patroll():
