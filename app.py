@@ -19,7 +19,9 @@ def index():
     site = pywikibot.Site('zh', 'wikipedia')
     cat = pywikibot.Category(site, "Category:正在等待審核的草稿")
     gen = pagegenerators.CategorizedPageGenerator(cat)
+    i = 0
     for page in gen:
+        i += 1
         if("<ref" not in page.text):
             Pokemons.append(page.title())
     return render_template("CatWikiCheck.html", len = len(Pokemons), Pokemons = Pokemons)
