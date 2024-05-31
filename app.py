@@ -16,6 +16,7 @@ executor = ThreadPoolExecutor(3) # 线程池
 @app.route('/')
 def index():
     Pokemons = []
+    Pokemons2 = []
     site = pywikibot.Site('zh', 'wikipedia')
     cat = pywikibot.Category(site, "Category:正在等待審核的草稿")
     gen = pagegenerators.CategorizedPageGenerator(cat)
@@ -24,7 +25,10 @@ def index():
         i += 1
         if("<ref" not in page.text):
             Pokemons.append(page.title())
-    return render_template("CatWikiCheck.html", len = len(Pokemons), Pokemons = Pokemons, i = i)
+        else:
+            if(page.text.count("<ref") == 1):
+                Pokemons2.append(page.title())
+    return render_template("CatWikiCheck.html", len = len(Pokemons), Pokemons = Pokemons,len2 = len(Pokemons2), Pokemons2 = Pokemons2, i = i)
     
 @app.route('/patrollInfo')
 def patroll():
