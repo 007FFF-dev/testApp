@@ -43,7 +43,7 @@ def ZhWikiCatAfcCheck():
         WikiText.append(page.text[0:2000])
         WikiText.append("https://zh.wikipedia.org/wiki/" + page.title())
         WikiText.append("\n\n\n\n\n\n\n\n\n\n\n\n")
-        return render_template("ZhWikiCatAfcCheck.html",WikiText = WikiText)
+        return render_template("ZhWikiCatAfcCheck.html", len = len(WikiText), WikiText = WikiText)
 
 @app.route('/patrollInfo')
 def patroll():
