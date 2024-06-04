@@ -32,7 +32,19 @@ def index():
         if("台灣" not in page.text):
             Pokemons3.append(page.title())
     return render_template("CatWikiCheck.html", len = len(Pokemons), Pokemons = Pokemons,len2 = len(Pokemons2), Pokemons2 = Pokemons2,len3 = len(Pokemons3), Pokemons3 = Pokemons3, i = i)
-    
+
+@app.route('/ZhWikiCatAfcCheck')
+def ZhWikiCatAfcCheck():
+    WikiText = []
+    site = pywikibot.Site('zh', 'wikipedia')
+    cat = pywikibot.Category(site, "Category:正在等待審核的草稿")
+    gen = pagegenerators.CategorizedPageGenerator(cat)
+    for page in gen:
+        WikiText.append(page.text[0:2000])
+        WikiText.append("https://zh.wikipedia.org/wiki/" + page.title())
+        WikiText.append("\n\n\n\n\n\n\n\n\n\n\n\n")
+        return render_template("ZhWikiCatAfcCheck.html",WikiText = WikiText)
+
 @app.route('/patrollInfo')
 def patroll():
     executor.submit(patrollInfo)
