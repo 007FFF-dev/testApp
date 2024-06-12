@@ -7,6 +7,19 @@
 	column-count:3;
 }
 </style>
+<script type="text/javascript">
+	window.onload=function(){
+		var local_a = localStorage.getItem("t01");
+		var a_list = document.getElementsByTagName("a");
+		for (var i = 0; i < a_list.length; i++) {
+		    var current_a = a_list[i];
+			if(local_a == current_a)
+			{
+				current_a.style.color = "red"; 
+			}
+		}
+	}
+</script>
 </head>
 <body>
 <!-- MAIN CONTENT -->
@@ -17,21 +30,47 @@
     <h3>No ref：</h3>
         <ul>
             {%for i in range(0, len)%}
-            <li><a href="https://zh.wikipedia.org/wiki/{{Pokemons[i]}}">{{Pokemons[i]}}</a></li>
+            <li>
+		<a href="#" onclick="myFunction(this)">{{Pokemons[i]}}</a>
+		    &nbsp;&nbsp;&nbsp;
+		<a href="https://zh.wikipedia.org/wiki/{{Pokemons[i]}}">->传送门<-</a>
+	    </li>
             {%endfor%}
         </ul>
     <h3>One ref：</h3>
         <ul>
             {%for i in range(0, len2)%} 
-            <li><a href="https://zh.wikipedia.org/wiki/{{Pokemons2[i]}}">{{Pokemons2[i]}}</a></li>
+	    <li>
+		<a href="#" onclick="myFunction(this)">{{Pokemons2[i]}}</a>
+		    &nbsp;&nbsp;&nbsp;
+		<a href="https://zh.wikipedia.org/wiki/{{Pokemons2[i]}}">->传送门<-</a>
+	    </li>
             {%endfor%}
         </ul>
     <h3>Other：</h3>
         <ul>
             {%for i in range(0, len3)%} 
-            <li><a href="https://zh.wikipedia.org/wiki/{{Pokemons3[i]}}">{{Pokemons3[i]}}</a></li>
+	    <li>
+		<a href="#" onclick="myFunction(this)">{{Pokemons3[i]}}</a>
+		    &nbsp;&nbsp;&nbsp;
+		<a href="https://zh.wikipedia.org/wiki/{{Pokemons3[i]}}">->传送门<-</a>
+	    </li>
             {%endfor%}
         </ul>
 </div>
+<script>
+	function myFunction(x){
+		if(x.style.color != "red")
+		{
+			x.style.color = "red";
+			localStorage.setItem("t01", x);
+		}
+		else
+		{
+			x.style.color = "blue";
+			localStorage.setItem("t01", "");
+		}
+	}
+</script>
 </body>
 </html>
