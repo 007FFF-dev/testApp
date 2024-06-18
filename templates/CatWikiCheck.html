@@ -18,6 +18,12 @@
 				current_a.style.color = "red"; 
 			}
 		}
+		var input_list = document.getElementsByTagName("input");
+		for (var i = 0; i < input_list.length; i++) {
+			var current_input = input_list[i];
+			var local_commit = localStorage.getItem(current_input.name);
+			current_input.value = local_commit;
+		}
 	}
 </script>
 </head>
@@ -33,7 +39,8 @@
             <li>
 		<a href="#" onclick="myFunction(this)">{{Pokemons[i]}}</a>
 		    &nbsp;&nbsp;&nbsp;
-		<a href="https://zh.wikipedia.org/wiki/{{Pokemons[i]}}">->传送门<-</a>
+		<a href="https://zh.wikipedia.org/wiki/{{Pokemons[i]}}">-></a>
+	    	<input type="text" name="{{Pokemons[i]}}" value="" size=3 oninput="getValue(this);">
 	    </li>
             {%endfor%}
         </ul>
@@ -43,7 +50,8 @@
 	    <li>
 		<a href="#" onclick="myFunction(this)">{{Pokemons2[i]}}</a>
 		    &nbsp;&nbsp;&nbsp;
-		<a href="https://zh.wikipedia.org/wiki/{{Pokemons2[i]}}">->传送门<-</a>
+		<a href="https://zh.wikipedia.org/wiki/{{Pokemons2[i]}}">-></a>
+	    	<input type="text" name="{{Pokemons2[i]}}" value="" size=3 oninput="getValue(this);">
 	    </li>
             {%endfor%}
         </ul>
@@ -53,7 +61,8 @@
 	    <li>
 		<a href="#" onclick="myFunction(this)">{{Pokemons3[i]}}</a>
 		    &nbsp;&nbsp;&nbsp;
-		<a href="https://zh.wikipedia.org/wiki/{{Pokemons3[i]}}">->传送门<-</a>
+		<a href="https://zh.wikipedia.org/wiki/{{Pokemons3[i]}}">-></a>
+	    	<input type="text" name="{{Pokemons3[i]}}" value="" size=3 oninput="getValue(this);">
 	    </li>
             {%endfor%}
         </ul>
@@ -70,6 +79,10 @@
 			x.style.color = "blue";
 			localStorage.setItem("t01", "");
 		}
+	}
+	function getValue(x){
+		var value = x.value;
+		localStorage.setItem(x.name, value);
 	}
 </script>
 </body>
