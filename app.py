@@ -29,8 +29,7 @@ def index():
         else:
             if(page.text.count("<ref") == 1):
                 Pokemons2.append(page.title())
-        if("台灣" not in page.text):
-            Pokemons3.append(page.title())
+        Pokemons3.append(page.title())
     return render_template("CatWikiCheck.html", len = len(Pokemons), Pokemons = Pokemons,len2 = len(Pokemons2), Pokemons2 = Pokemons2,len3 = len(Pokemons3), Pokemons3 = Pokemons3, i = i)
 
 @app.route('/ZhWikiCatAfcCheck')
