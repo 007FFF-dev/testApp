@@ -49,6 +49,10 @@ def patroll():
     executor.submit(patrollInfo)
     return render_template('index.html')
 
+@app.route('/testimg')
+def testimg():
+    return render_template('test.html')
+
 def patrollInfo():
     site = pywikibot.Site('zh', 'wikipedia')
     gen = site.newpages(namespaces=0, patrolled=False, returndict=True)
